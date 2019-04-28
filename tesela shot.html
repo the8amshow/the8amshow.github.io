@@ -1,0 +1,60 @@
+<html>
+<head>
+<title> Platform Game </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",800,500);
+var background = new sjs.Image("Images/city.png"); 
+background.setSize(2500, 1325);
+var player = new sjs.Image("Images/walk5.png");
+
+player.type = "player";
+player.setSize(170,190);
+player.setGravity(3);
+player.bottom();
+player.friction = .3;
+
+
+
+
+sjs.scrollable(player,background);
+
+
+var r_images = ["Images/wl1.png", "Images/wr1.png""Images/wl1.png", "Images/wl1.png", "Images/wl1.png", "Images/wl1.png", "Images/wl1.png",]
+
+var l_images = ["Images/walk1l.png", "Images/walk2l.png", "Images/walk3l.png", "Images/walk4l.png", "Images/walk5l.png", "Images/walk6l.png"];
+
+var r_facing = true;
+var r_track = 0;
+var l_track = 0;
+ 
+sjs.keyDown(RIGHT_KEY, function(){
+r_facing = true;
+r_track = r_track + 1;
+player.pushRight(2);
+player.setImage(r_images[r_track]);
+if(r_track == 7){
+r_track = 0;
+} 
+}); //end Right key 
+
+sjs.keyDown(LEFT_KEY, function(){
+r_facing = false;
+l_track = l_track + 1;
+player.pushLeft(2);
+player.setImage(l_images[l_track]);
+if(l_track == 6){
+l_track = 0;
+} 
+}); //end Left key
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> platform </h1>
+<div id="target" style="margin:auto;background:teal;"></div>
+</body>
+</html> 
